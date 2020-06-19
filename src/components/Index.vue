@@ -1,0 +1,151 @@
+<template>
+  <div id="container" >
+    <div>
+      <img :key="i" v-for="(matrix, i) in matrixs" :style="{
+        width: '100px',
+        height: '200px',
+        position: 'absolute',
+        marginLeft: '-100px',
+        transform: `matrix3d(${matrix.toString()})`,
+        zIndex: `${i%8}`
+      }"
+      src="../assets/logo.png"
+      />
+    <img src="../assets/youyuxi.jpg" class="portrait" :style="{
+      transform: `matrix3d(${viewMat.toString()})`
+    }"/>
+    </div>
+    <div class="control">
+      rotateX<a-slider id="test" :default-value="0" :min="-180" :max="180" :disabled="false" v-model='rotateX' @change="handleChangeX" />
+      rotateY<a-slider id="test" :default-value="0" :min="-180" :max="180" :disabled="false" v-model='rotateY' @change="handleChangeY" />
+      rotateZ<a-slider id="test" :default-value="0" :min="-180" :max="180" :disabled="false" v-model='rotateZ' @change="handleChangeZ" />
+      Disabled: <a-switch size="large" :checked="disabled" @change="handleDisabledChange" />
+      shuffle: <a-switch size="large" :checked="shuffle" @change="shuffleChange" />
+    </div>
+    
+  </div>
+</template>
+
+<script type="text/javascript">
+import {glMatrix, vec3,quat, mat4 } from 'gl-matrix';
+
+export default {
+  name: 'HelloVue',
+  data(){
+    const num = 64;
+    const matrixs = [];
+    for(let i=0; i<num; i++){
+      matrixs[i] = mat4.create();
+    }
+    return {
+      up:[0,1,0], // 向上方向
+      shuffle: true, //是否飘逸
+      disabled: false,
+      rotateX:0,
+      rotateY:0,
+      rotateZ:0,
+      num,
+      matrixs,
+      containMatrix: mat4.create(),
+      baseViewPoint: vec3.fromValues(0, 0, -20),
+    }
+  },
+  computed:{
+    viewMat(){
+      const { eye, center = [0,0,0], up=[0,-1,0] } = this;
+      const mat =  mat4.lookAt([], eye, center, up);
+      console.info(eye, center, up, mat)
+      return mat;
+    },
+    eye(){
+      const { rotateX, rotateY, rotateZ, baseViewPoint } = this;
+      const quatVec4 = quat.fromEuler([], this.rotateX,  this.rotateY,  this.rotateZ);
+      
+      const eyePos =  vec3.transformQuat([], baseViewPoint, quatVec4);
+      console.info(quatVec4, eyePos, rotateX, rotateY, rotateZ, 'sb');
+      return eyePos;
+    }
+  },
+  created(){
+    
+  },
+  mounted(){
+    this.baseMatrix = mat4.create();
+    this.time = 1;
+    // const rotateM = mat4.rotateX([], this.baseMatrix, Math.PI/4);
+    // this.$set(this.matrixs, 0, rotateM);
+    this.render();
+  },
+  methods:{
+    render(){
+      for(let i=0; i< this.num;i++){
+        mat4.rotateZ(this.matrixs[i], this.baseMatrix, 2*(i+0.04*this.time)/this.num*Math.PI);
+        mat4.rotateX(this.matrixs[i], this.matrixs[i], ((i%8)*0.25 + 0.01 * this.time)*Math.PI);
+        mat4.translate(this.matrixs[i], this.matrixs[i], [0,200+(i%8)*10, 0]);
+        mat4.multiply(this.matrixs[i], this.matrixs[i], this.viewMat.slice());
+        // this.$set(this.matrixs, i, this.matrixs[i]);
+      }
+      if(this.shuffle){
+        this.time +=1;
+      }
+      
+      this.matrixs.splice()
+      
+      // mat4.rotateX(this.baseMatrix, this.baseMatrix, 0.01*Math.PI);
+      // mat4.rotateY(this.baseMatrix, this.baseMatrix, 0.01*Math.PI);
+      
+      this.animation = requestAnimationFrame(this.render)
+    },
+    handleChangeX(val){
+      this.rotateX = val;
+    },
+    handleChangeY(val){
+      this.rotateY = val;
+    },
+    handleChangeZ(val){
+      this.rotateZ = val;
+    },
+    handleDisabledChange(disabled){
+      this.disabled = disabled;
+
+      console.info(disabled, 'sb');
+      if(disabled){
+        cancelAnimationFrame(this.animation);
+      }
+      else{
+        this.render()
+      }
+    },
+    shuffleChange(shuffle){
+      this.shuffle = shuffle;
+    }
+  }
+}
+</script>
+
+<style type="text/css">
+  #container {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .portrait{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    left: -50px;
+    top: 0px;
+    z-index: 1000;
+  }
+  .control{
+    width: 150px;
+    position: fixed;
+    right: 100px;
+  }
+</style>
