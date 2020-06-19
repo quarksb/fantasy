@@ -1,16 +1,12 @@
 <template>
   <div id="container" >
     <div>
-      <img :key="i" v-for="(matrix, i) in matrixs" :style="{
-        width: '100px',
-        height: '200px',
-        position: 'absolute',
-        marginLeft: '-100px',
+      <img :key="i" v-for="(matrix, i) in matrixs" class="basicImg" :style="{
         transform: `matrix3d(${matrix.toString()})`,
-        zIndex: `${i%8}`
       }"
       src="../assets/logo.png"
       />
+      
     <img src="../assets/youyuxi.jpg" class="portrait" :style="{
       transform: `matrix3d(${viewMat.toString()})`
     }"/>
@@ -28,6 +24,8 @@
 
 <script type="text/javascript">
 import {glMatrix, vec3,quat, mat4 } from 'gl-matrix';
+
+
 
 export default {
   name: 'HelloVue',
@@ -47,7 +45,7 @@ export default {
       num,
       matrixs,
       containMatrix: mat4.create(),
-      baseViewPoint: vec3.fromValues(0, 0, -20),
+      baseViewPoint: vec3.fromValues(0, 0, 200),
       baseUp: vec3.fromValues(0,1,0)
     }
   },
@@ -70,20 +68,30 @@ export default {
   },
   mounted(){
     this.baseMatrix = mat4.create();
+    // this.perspMatrix = mat4.perspective([], 30*Math.PI/180, 1, 1, 10000);
+    // this.perspMatrix = mat4.ortho([], -1, 1, -1, 1, 1, 10000);
     this.time = 1;
     this.render();
   },
   methods:{
     render(){
+      // console.time('matrix cal')
       for(let i=0; i< this.num;i++){
-        mat4.rotateZ(this.matrixs[i], this.baseMatrix, 2*(i+0.04*this.time)/this.num*Math.PI);
+        mat4.translate(this.matrixs[i], this.matrixs[i], [0, 100 + (i%8)*10, 0]);
+        mat4.rotateY(this.matrixs[i], this.baseMatrix, 2*(i+0.04*this.time)/this.num*Math.PI);
         mat4.rotateX(this.matrixs[i], this.matrixs[i], ((i%8)*0.25 + 0.01 * this.time)*Math.PI);
-        mat4.translate(this.matrixs[i], this.matrixs[i], [0,200+(i%8)*10, 0]);
-        mat4.multiply(this.matrixs[i], this.matrixs[i], this.viewMat.slice());
+        
+        mat4.multiply(this.matrixs[i], this.matrixs[i], this.viewMat);
+        if(true){
+          // mat4.multiply(this.matrixs[i], this.matrixs[i], this.perspMatrix);
+        }
+        // console.info(this~.matrixs[i])
+        // debugger;
       }
       if(this.shuffle){
         this.time +=1;
       }
+      // console.timeEnd('matrix cal')
       
       this.matrixs.splice()
       this.animation = requestAnimationFrame(this.render)
@@ -131,12 +139,19 @@ export default {
     height: 200px;
     border-radius: 50%;
     left: -50px;
-    top: 0px;
+    top: -50px;
     z-index: 1000;
   }
   .control{
     width: 150px;
     position: fixed;
     right: 100px;
+  }
+  .basicImg{
+    width: 100px;
+    height: 200p;
+    position: absolute;
+    margin-left: -100px;
+    backface-visibility: hidden;
   }
 </style>
