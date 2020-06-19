@@ -48,23 +48,22 @@ export default {
       matrixs,
       containMatrix: mat4.create(),
       baseViewPoint: vec3.fromValues(0, 0, -20),
+      baseUp: vec3.fromValues(0,1,0)
     }
   },
   computed:{
     viewMat(){
       const { eye, center = [0,0,0], up=[0,-1,0] } = this;
       const mat =  mat4.lookAt([], eye, center, up);
-      console.info(eye, center, up, mat)
       return mat;
     },
     eye(){
       const { rotateX, rotateY, rotateZ, baseViewPoint } = this;
       const quatVec4 = quat.fromEuler([], this.rotateX,  this.rotateY,  this.rotateZ);
-      
+      this.up = vec3.transformQuat([], this.baseUp, quatVec4);
       const eyePos =  vec3.transformQuat([], baseViewPoint, quatVec4);
-      console.info(quatVec4, eyePos, rotateX, rotateY, rotateZ, 'sb');
       return eyePos;
-    }
+    },
   },
   created(){
     
@@ -72,8 +71,6 @@ export default {
   mounted(){
     this.baseMatrix = mat4.create();
     this.time = 1;
-    // const rotateM = mat4.rotateX([], this.baseMatrix, Math.PI/4);
-    // this.$set(this.matrixs, 0, rotateM);
     this.render();
   },
   methods:{
@@ -83,17 +80,12 @@ export default {
         mat4.rotateX(this.matrixs[i], this.matrixs[i], ((i%8)*0.25 + 0.01 * this.time)*Math.PI);
         mat4.translate(this.matrixs[i], this.matrixs[i], [0,200+(i%8)*10, 0]);
         mat4.multiply(this.matrixs[i], this.matrixs[i], this.viewMat.slice());
-        // this.$set(this.matrixs, i, this.matrixs[i]);
       }
       if(this.shuffle){
         this.time +=1;
       }
       
       this.matrixs.splice()
-      
-      // mat4.rotateX(this.baseMatrix, this.baseMatrix, 0.01*Math.PI);
-      // mat4.rotateY(this.baseMatrix, this.baseMatrix, 0.01*Math.PI);
-      
       this.animation = requestAnimationFrame(this.render)
     },
     handleChangeX(val){
@@ -108,7 +100,6 @@ export default {
     handleDisabledChange(disabled){
       this.disabled = disabled;
 
-      console.info(disabled, 'sb');
       if(disabled){
         cancelAnimationFrame(this.animation);
       }
