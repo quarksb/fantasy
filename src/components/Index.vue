@@ -1,17 +1,15 @@
 <template>
   <div id="container" >
-    <div :style="{
-      tranform: `matrix3d(${viewMat.toString()})`
-    }">
+    <div >
       <img :key="i" v-for="(matrix, i) in matrixs" class="basicImg" :style="{
         transform: `matrix3d(${matrix.toString()})`,
       }"
       src="../assets/logo.png"
       />
       
-    <!-- <img src="../assets/youyuxi.jpg" class="portrait" :style="{
+    <img src="../assets/youyuxi.jpg" class="portrait" :style="{
       transform: `matrix3d(${viewMat.toString()})`
-    }"/> -->
+    }"/>
     </div>
     <div class="control">
       rotateX<a-slider id="test" :default-value="0" :min="-180" :max="180" :disabled="false" v-model='rotateX' @change="handleChangeX" />
@@ -81,11 +79,10 @@ export default {
       // console.time('matrix cal')
       for(let i=0; i< this.num;i++){
         mat4.translate(this.matrixs[i], this.matrixs[i], [0, 100 + (i%8)*10, 0]);
-        // mat4.rotateZ(this.matrixs[i], this.baseMatrix, 2*(i+0.04*this.time)/this.num*Math.PI);
-        mat4.rotateY(this.matrixs[i], this.baseMatrix, 2*(i+0.04*this.time)/this.num*Math.PI);
+        mat4.rotateZ(this.matrixs[i], this.baseMatrix, 2*(i+0.04*this.time)/this.num*Math.PI);
+        // mat4.rotateY(this.matrixs[i], this.baseMatrix, 2*(i+0.04*this.time)/this.num*Math.PI);
         mat4.rotateX(this.matrixs[i], this.matrixs[i], ((i%8)*0.25 + 0.01 * this.time)*Math.PI);
-        
-        // mat4.multiply(this.matrixs[i], this.matrixs[i], this.viewMat);
+        mat4.multiply(this.matrixs[i], this.matrixs[i], this.viewMat);
         if(true){
           // mat4.multiply(this.matrixs[i], this.matrixs[i], this.perspMatrix);
         }
