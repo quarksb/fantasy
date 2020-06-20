@@ -50,7 +50,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../docs'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: 'https://quarksb.github.io/fantasy/docs/',
+    assetsPublicPath: '/docs/',
 
     /**
      * Source Maps

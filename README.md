@@ -1,6 +1,9 @@
 # fantasy
 
-> something interesting
+> [something interesting ]( https://quarksb.github.io/fantasy/)
+> 
+
+
 
 ## Build Setup
 
