@@ -1,7 +1,6 @@
 # fantasy
 
-> [something interesting ]( https://quarksb.github.io/fantasy/)
-> 
+> this is a [demo]( https://quarksb.github.io/fantasy/) to show the magix power of cssstyle matrix3d
 
 
 

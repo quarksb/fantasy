@@ -1,17 +1,17 @@
 <template>
   <div id="container" >
-    <h1>Welcome to quark homePage!</h1>
-    <p>
-      <router-link to="/lotus">Go to lotus</router-link>
-      <router-link to="/magicText">Go to magic text</router-link>
-    </p>
+    <h1>This is Magic Text</h1>
+    <butterfly />
   </div>
 </template>
 
 <script type="text/javascript">
-
+import butterfly from './butterfly'
 export default {
-  name: 'HelloVue',
+  name: 'MagicText',
+  components:{
+    butterfly
+  },
   data(){
     return {
 
