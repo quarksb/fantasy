@@ -43,7 +43,7 @@
           <a-slider  :default-value="0" :min="-180" :max="180" :disabled="false" v-model='rotateY' @change="handleChangeY" />
         </a-col>
         <a-col :span="4" >
-          <a-input-number  class="input" v-model="rotateX"  :min="-180" :max="180" style="marginLeft: 16px" />
+          <a-input-number  class="input" v-model="rotateY"  :min="-180" :max="180" style="marginLeft: 16px" />
         </a-col>
       </a-row>
       <a-row>
@@ -52,7 +52,7 @@
            <a-slider  :default-value="0" :min="-180" :max="180" :disabled="false" v-model='rotateZ' @change="handleChangeZ" />
         </a-col>
         <a-col :span="4">
-          <a-input-number  class="input" v-model="rotateX"  :min="-180" :max="180" style="marginLeft: 16px" />
+          <a-input-number  class="input" v-model="rotateZ"  :min="-180" :max="180" style="marginLeft: 16px" />
         </a-col>
       </a-row>
       <a-row>
