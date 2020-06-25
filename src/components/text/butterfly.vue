@@ -5,7 +5,7 @@
         <div class="body"></div>
         <div class="wing" :style="{
             transform: `rotateY(${angle}deg)`,
-        }">sb</div>
+        }"></div>
         <div class="wing right"  :style="{
             transform: `rotateY(${-angle}deg)`,
         }"></div>
