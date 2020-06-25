@@ -7,9 +7,9 @@
       src="../assets/logo.png"
       />
       
-    <!-- <img src="../assets/youyuxi.jpg" class="portrait" :style="{
+    <img src="../assets/youyuxi.jpg" class="portrait" :style="{
       transform: `matrix3d(${viewMat.toString()})`
-    }"/> -->
+    }"/>
     </div>
     <div class="control">
       rotateX<a-slider id="test" :default-value="0" :min="-180" :max="180" :disabled="false" v-model='rotateX' @change="handleChangeX" />
@@ -43,7 +43,7 @@ export default {
       num,
       matrixs,
       containMatrix: mat4.create(),
-      baseViewPoint: vec3.fromValues(0, 0, 5),
+      baseViewPoint: vec3.fromValues(0, 0, 600),
       baseUp: vec3.fromValues(0,1,0)
     }
   },
@@ -66,43 +66,36 @@ export default {
   },
   mounted(){
     this.baseMatrix = mat4.create();
-    // this.perspMatrix = mat4.perspective([], 30*Math.PI/180, 1, 1, 10000);
+    this.perspMatrix = mat4.perspective([], 0.3/180*Math.PI, 1, 100, 10000);
     const k = 1;
-    this.perspMatrix = mat4.ortho([], -k, k, -k, k, 1, 10000);
+    // this.perspMatrix = mat4.ortho([], -k, k, -k, k, 1, 10000);
     this.time = 1;
     this.render();
   },
   methods:{
     render(){
       // console.time('matrix cal')
+      const r = 200;
       for(let i=0; i< this.num;i++){
-        // mat4.rotateZ(this.matrixs[i], this.baseMatrix, 2*(i+0.01*this.time)/this.num*Math.PI);
-        // mat4.rotateX(this.matrixs[i], this.matrixs[i], 2*(i+0.04*this.time)/this.num*Math.PI);
-        // mat4.rotateX(this.matrixs[i], this.matrixs[i], ((i%8)*0.25 + 0.01 * this.time)*Math.PI);
-
-
-        // mat4.rotateX(this.matrixs[i], this.baseMatrix, (0.25+0)*Math.PI);
-        // mat4.rotateY(this.matrixs[i], this.matrixs[i], (0.25+0.01*this.time)*Math.PI);
-
-        mat4.rotateZ(this.matrixs[i], this.baseMatrix, (i + 0.04 * this.time)/16*Math.PI);
+        const theta = 0.5 * Math.PI;
+        const angle = -0.02*this.time + 0.25 *(i % 8)* Math.PI;
+        // const rotateX = ;
+        const rotateY = 0;
+        const rotateZ = angle;
+        const angle1 = i/this.num * 2 * Math.PI;
+        const translateVec = [1,3*Math.cos(angle)*Math.cos(angle),1];
+        // mat4.fromTranslation(this.matrixs[i], translateVec);
+        // mat4.rotate(this.matrixs[i], this.matrixs[i], 1 * Math.PI + gama, [1,0,0]);
+        mat4.rotate(this.matrixs[i], this.baseMatrix, angle, [Math.cos(angle1),Math.sin(angle1),0]);
+        mat4.rotateZ(this.matrixs[i], this.matrixs[i], angle1);
+        mat4.translate(this.matrixs[i], this.matrixs[i], [0,r,0])
+        mat4.scale(this.matrixs[i], this.matrixs[i], translateVec);
         
-        mat4.translate(this.matrixs[i], this.matrixs[i], [0, 200, 0]);
-
-        mat4.rotateY(this.matrixs[i], this.matrixs[i], ((i%8)/4 + 0.01 * this.time)*Math.PI);
-        
-        
-        // mat4.rotateY(this.matrixs[i], this.matrixs[i], 0.25*Math.PI);
-        // mat4.rotateZ(this.matrixs[i], this.matrixs[i], 0.25*Math.PI);
-       
-        
-        
-        
+        // const quatVec4 = quat.fromEuler([], rotateX, rotateY, rotateZ);
+        const quatVec4 = quat.fromEuler([], 0, 0, 0);
+        // mat4.fromRotationTranslation(this.matrixs[i], quatVec4, translateVec)
         mat4.multiply(this.matrixs[i], this.viewMat, this.matrixs[i]);
-        // if(true){
-        mat4.multiply(this.matrixs[i], this.perspMatrix, this.matrixs[i]);
-        // }
-        // console.info(this~.matrixs[i])
-        // debugger;
+        // mat4.multiply(this.matrixs[i], this.perspMatrix, this.matrixs[i]);
       }
       if(this.shuffle){
         this.time +=1;
@@ -154,7 +147,7 @@ export default {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    left: -50px;
+    left: 50px;
     top: -50px;
     z-index: 1000;
   }
@@ -170,6 +163,6 @@ export default {
     width: 100px;
     height: 200p;
     position: absolute;
-    /* backface-visibility: hidden; */
+    backface-visibility: hidden;
   }
 </style>
