@@ -78,16 +78,16 @@ export default {
     render(){
       // console.time('matrix cal')
       for(let i=0; i< this.num;i++){
-        mat4.translate(this.matrixs[i], this.matrixs[i], [0, 100 + (i%8)*10, 0]);
         mat4.rotateZ(this.matrixs[i], this.baseMatrix, 2*(i+0.04*this.time)/this.num*Math.PI);
         // mat4.rotateY(this.matrixs[i], this.baseMatrix, 2*(i+0.04*this.time)/this.num*Math.PI);
-        mat4.rotateX(this.matrixs[i], this.matrixs[i], ((i%8)*0.25 + 0.01 * this.time)*Math.PI);
+        mat4.rotateX(this.matrixs[i], this.matrixs[i], ((i%8)*0.25 - 0.01 * this.time)*Math.PI);
+        // 通过 viewMat 将物体前移，此处 viewMat 等同于将目标平移再镜像 有兴趣可以把下面一行替换掉 multiply 一行
+        // mat4.translate(this.matrixs[i], this.matrixs[i], this.eye);
         mat4.multiply(this.matrixs[i], this.matrixs[i], this.viewMat);
+       
         if(true){
-          // mat4.multiply(this.matrixs[i], this.matrixs[i], this.perspMatrix);
+          // mat4.multiply(this.matrixs[i], this.perspMatrix, this.matrixs[i], );
         }
-        // console.info(this~.matrixs[i])
-        // debugger;
       }
       if(this.shuffle){
         this.time +=1;
