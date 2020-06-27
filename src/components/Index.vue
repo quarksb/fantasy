@@ -15,12 +15,6 @@ export default {
     return {
     }
   },
-  computed: {
-
-  },
-  created () {
-
-  },
   methods: {
 
   }
