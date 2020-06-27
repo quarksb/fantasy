@@ -205,7 +205,7 @@ export default {
 }
 </script>
 
-<style type="text/css" scoped>
+<style type="text/css">
   #container {
     width: 100px;
     height: 100px;
@@ -243,8 +243,6 @@ export default {
   }
   .basic{
     position: absolute;
-    /* width: 100px;
-    height: 200px; */
   }
   .basicImg{
     width: 100px;

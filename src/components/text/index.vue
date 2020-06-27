@@ -1,6 +1,6 @@
 <template>
   <div id="container" >
-    <h1>This is Magic Text</h1>
+    <h1></h1>
     <butterfly />
   </div>
 </template>
