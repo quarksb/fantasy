@@ -1,6 +1,7 @@
 <template>
   <div id="container" >
     <h1>Welcome to quark homePage!</h1>
+    <h2>test gitignore</h2>
     <p>
       <router-link to="/lotus">Go to lotus</router-link>
       <router-link to="/magicText">Go to magic text</router-link>
