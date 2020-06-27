@@ -14,25 +14,24 @@
 </template>
 
 <script type="text/javascript">
-
 export default {
   name: 'butterfly',
-  data(){
+  data () {
     return {
-        angle: 45,
+      angle: 45
     }
   },
-  computed:{
-    
+  computed: {
+
   },
-  created(){
-    
+  created () {
+
   },
-  mounted(){
+  mounted () {
   },
-  methods:{
-    stop(){
-        
+  methods: {
+    stop () {
+
     }
   }
 }
@@ -45,7 +44,6 @@ export default {
     align-content: center;
 }
 .basic{
-
     position: relative;
     width: 100px;
     height: 100px;

@@ -9,24 +9,22 @@
 </template>
 
 <script type="text/javascript">
-
 export default {
   name: 'HelloVue',
-  data(){
+  data () {
     return {
-
     }
   },
-  computed:{
-    
+  computed: {
+
   },
-  created(){
-    
+  created () {
+
   },
-  mounted(){
+  mounted () {
   },
-  methods:{
-    
+  methods: {
+
   }
 }
 </script>

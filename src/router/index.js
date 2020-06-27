@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/Index'
+import HelloWorld from '@/components/index'
 import LotusComponent from '@/components/LotusComponent'
 import TextComponent from '@/components/text'
 

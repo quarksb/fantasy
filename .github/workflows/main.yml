@@ -21,10 +21,10 @@ jobs:
           ref: master
 
       - name: Install Dependencies
-        run: npm install
+        run: yarn
 
       - name: Build
-        run: npm run build
+        run: yarn build
 
       - name: Commit files
         run: |

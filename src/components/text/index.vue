@@ -9,24 +9,23 @@
 import butterfly from './butterfly'
 export default {
   name: 'MagicText',
-  components:{
+  components: {
     butterfly
   },
-  data(){
+  data () {
     return {
-
     }
   },
-  computed:{
-    
+  computed: {
+
   },
-  created(){
-    
+  created () {
+
   },
-  mounted(){
+  mounted () {
   },
-  methods:{
-    
+  methods: {
+
   }
 }
 </script>
