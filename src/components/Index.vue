@@ -4,6 +4,8 @@
     <p>
       <router-link to="/lotus">Go to lotus</router-link>
       <router-link to="/magicText">Go to magic text</router-link>
+      <router-link to="/heartFlowers">Go to heart flowers</router-link>
+      <router-link to="/collision">Go to collision</router-link>
     </p>
   </div>
 </template>
