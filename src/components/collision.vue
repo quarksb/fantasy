@@ -3,7 +3,7 @@
     <div class="front">
       在
       <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Advanced_animations">canvas 动画教程</a>
-      基础上加点碰撞
+      基础上加点碰撞(通过鼠标单击添加新的小球)
     </div>
     <canvas ref="canvas" class="full"/>
   </div>
