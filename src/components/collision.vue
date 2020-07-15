@@ -144,11 +144,11 @@ export default {
         }
         return y
       }
-      for (let i of vx.keys()) {
-        vx[i] = rub(vx[i])
+      for (let i of this.vx.keys()) {
+        this.vx[i] = rub(this.vx[i])
       }
-      for (let i of vy.keys()) {
-        vy[i] = rub(vy[i])
+      for (let i of this.vy.keys()) {
+        this.vy[i] = rub(this.vy[i])
       }
     },
     clear () {
