@@ -205,7 +205,7 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
   #container {
     width: 100px;
     height: 100px;

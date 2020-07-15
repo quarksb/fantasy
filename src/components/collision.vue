@@ -177,11 +177,6 @@ export default {
 </script>
 
 <style type="text/css">
-  #container {
-    top: 0;
-    left: 0;
-
-  }
   .full{
     position: absolute;
     left: 0;
