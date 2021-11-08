@@ -1,6 +1,6 @@
 # fantasy
 
-> this is a [demo]( https://cadahong.com/) to show the magix power of cssstyle matrix3d
+> this is a [demo] to show the magic power of css style matrix3d
 
 
 

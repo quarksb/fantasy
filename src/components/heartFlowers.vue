@@ -5,7 +5,8 @@
 </template>
 
 <script type="text/javascript">
-export default {
+import { defineComponent } from 'vue';
+export default defineComponent({
   name: 'heart',
   data () {
     return {
@@ -51,7 +52,7 @@ export default {
       ctx.fill(new Path2D(`M${x} ${y - 30 * ratio} c0 ${-3 * ratio} ${-10 * ratio} ${-15 * ratio} ${-25 * ratio} ${-15 * ratio} c ${-30 * ratio} 0 ${-30 * ratio} ${30 * ratio} ${-30 * ratio} ${30 * ratio} c0 ${25 * ratio} ${20 * ratio} ${47 * ratio} ${55 * ratio} ${65 * ratio} c ${35 * ratio} ${-18 * ratio} ${55 * ratio} ${-40 * ratio} ${55 * ratio} ${-65 * ratio} c0 0 0 ${-30 * ratio} ${-30 * ratio} ${-30 * ratio} c ${-15 * ratio} 0 ${-25 * ratio} ${12 * ratio} ${-25 * ratio} ${15 * ratio} Z`))
     }
   }
-}
+})
 </script>
 
 <style type="text/css">

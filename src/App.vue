@@ -5,9 +5,10 @@
 </template>
 
 <script>
-export default {
+import { createApp } from "vue";
+export default createApp({
   name: 'App'
-}
+})
 </script>
 
 <style>

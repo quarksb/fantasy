@@ -40,7 +40,7 @@
 </template>
 
 <script type="text/javascript">
-import butterfly from './butterfly'
+import butterfly from './butterfly.vue'
 import { glMatrix, mat4 } from 'gl-matrix'
 export default {
   name: 'MagicText',
@@ -79,7 +79,6 @@ export default {
         mat4.rotateX(this.matrixs[i], this.baseMatrix, glMatrix.toRadian(this.rotateX))
         mat4.rotateY(this.matrixs[i], this.matrixs[i], glMatrix.toRadian(this.rotateY))
         mat4.rotateZ(this.matrixs[i], this.matrixs[i], glMatrix.toRadian(this.rotateZ))
-        console.info(this.matrixs[i].slice())
       }
       this.matrixs.splice()
       console.info('sb', this.num)

@@ -10,7 +10,9 @@
 </template>
 
 <script type="text/javascript">
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'Collision',
   data () {
     return {
@@ -173,7 +175,7 @@ export default {
       this.ctx.fill()
     }
   }
-}
+})
 </script>
 
 <style type="text/css">

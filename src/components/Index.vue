@@ -11,7 +11,9 @@
 </template>
 
 <script type="text/javascript">
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'HelloVue',
   data () {
     return {
@@ -20,7 +22,7 @@ export default {
   methods: {
 
   }
-}
+})
 </script>
 
 <style type="text/css">
