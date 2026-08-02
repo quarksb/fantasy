@@ -1,17 +1,9 @@
 import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
+import react from '@vitejs/plugin-react';
 
-const libOutDir = 'dist';
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [
-        vue(),
-    ],
-    css:{
-        preprocessorOptions:{
-            less:{
-                javascriptEnabled: true
-            }
-        }
-    }
+  plugins: [react()],
+  // 静态站点部署到 GitHub Pages,使用相对路径
+  base: './',
 });

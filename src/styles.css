@@ -1,0 +1,182 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f6f7fb;
+  color: #2c3e50;
+  overflow: hidden;
+}
+
+.full {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* ---------- 动画页通用返回条 ---------- */
+.back-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 2000;
+  padding: 4px 12px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 13px;
+  transition: background 0.2s;
+}
+
+.back-link:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* ---------- Home ---------- */
+.home {
+  max-width: 720px;
+  margin: 64px auto;
+  padding: 0 16px;
+  text-align: left;
+}
+
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.home-cards a {
+  text-decoration: none;
+}
+
+/* ---------- 控制面板通用 ---------- */
+.ctl-row {
+  margin-top: 14px;
+}
+
+.ctl-row h4 {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+}
+
+/* ---------- Lotus ---------- */
+.lotus-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lotus-img {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.lotus-portrait {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  z-index: 1000;
+}
+
+.lotus-control {
+  position: fixed;
+  right: 24px;
+  top: 24px;
+  width: 260px;
+  background: rgba(255, 255, 255, 0.94);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  z-index: 1500;
+}
+
+.lotus-control .ant-radio-button-wrapper {
+  width: 72px;
+  text-align: center;
+}
+
+/* ---------- Butterfly ---------- */
+.butterfly-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.butterfly-box {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.butterfly-body {
+  position: absolute;
+  transform-origin: 50% 70%;
+  left: -10px;
+  top: 8px;
+  width: 20px;
+  height: 60px;
+  background-image: url('./assets/butterfly-body.png');
+  background-size: 100% 100%;
+}
+
+.butterfly-wing {
+  position: absolute;
+  transform-origin: right;
+  left: -60px;
+  width: 60px;
+  height: 100px;
+  background-image: url('./assets/butterfly-wing.png');
+  background-size: 100% 100%;
+}
+
+.butterfly-control {
+  position: fixed;
+  right: 24px;
+  top: 24px;
+  width: 260px;
+  background: rgba(255, 255, 255, 0.94);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  z-index: 1500;
+}
+
+/* ---------- Collision ---------- */
+.front-hint {
+  position: absolute;
+  z-index: 1000;
+  width: 320px;
+  font-size: 15px;
+  line-height: 1.6;
+  text-align: justify;
+  margin: 16px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.front-hint a {
+  color: #1677ff;
+}

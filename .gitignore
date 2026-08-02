@@ -5,6 +5,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# bun 本地缓存(全局 ~/.bun 不可写时的兜底)
+.bun-cache/
+.bun-tmp/
+
 # Editor directories and files
 .idea
 .vscode
